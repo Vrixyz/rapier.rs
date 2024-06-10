@@ -23,6 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: install dependencies
-        run: npm install --force -g node@16 && yarn
+        run: npm install --force -g node@16.17 && yarn
       - name: Check template generation
         run: ./generate_user_guides.sh && PUBLISH_MODE=1 yarn build
