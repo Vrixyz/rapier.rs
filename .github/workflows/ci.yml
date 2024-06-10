@@ -19,11 +19,15 @@ jobs:
       - name: Code snippets compilation check + tests
         run: cd docs-examples && cargo test
   check-injection:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: install node
+        run: npm uninstall node && npm install --force -g node@16.17
+      - name: dump infos
+        run: yarn -v ; node -v ; yarn node -v
       - name: install dependencies
-        run: npm install --force -g node@16.17 && yarn
+        run: yarn
       - name: dump infos
         run: yarn -v ; yarn run docusaurus -V ; node -v ; yarn node -v
       - name: Check template generation
