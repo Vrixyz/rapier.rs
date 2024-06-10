@@ -20,7 +20,28 @@ jobs:
         run: cd docs-examples && cargo test
   check-injection:
     runs-on: ubuntu-latest
+    env:
+      PUBLISH_MODE: 1
     steps:
       - uses: actions/checkout@v4
-      - name: Check injection script
-        run: find docs/user_guides/templates/ -type f -print0 | OUTPUT_FOLDER=docs/user_guides/templates_injected xargs -0 ./inject_code_in_user_guides.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16.17
+      - name: dump infos
+        run: yarn -v ; node -v ; yarn node -v
+      - name: install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: dump infos
+        run: yarn -v ; yarn run docusaurus -V ; node -v ; yarn node -v
+      - name: Check template generation
+        run: ./generate_user_guides.sh
+      - name: Archive templates
+        uses: actions/upload-artifact@v4
+        with:
+          name: bevy_plugin
+          path: |
+            docs/user_guides/bevy_plugin
+      - name: diff
+        run: git diff
+      - name: Check template generation
+        run: yarn build
