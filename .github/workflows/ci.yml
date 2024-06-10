@@ -22,8 +22,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: install node
-        run: npm uninstall node && npm install --force -g node@16.17
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16.17
       - name: dump infos
         run: yarn -v ; node -v ; yarn node -v
       - name: install dependencies
