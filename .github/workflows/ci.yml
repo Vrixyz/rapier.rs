@@ -30,8 +30,18 @@ jobs:
       - name: dump infos
         run: yarn -v ; node -v ; yarn node -v
       - name: install dependencies
-        run: yarn
+        run: yarn install --immutable --immutable-cache --check-cache
       - name: dump infos
         run: yarn -v ; yarn run docusaurus -V ; node -v ; yarn node -v
       - name: Check template generation
-        run: ./generate_user_guides.sh && yarn build
+        run: ./generate_user_guides.sh
+      - name: Archive templates
+        uses: actions/upload-artifact@v4
+        with:
+          name: templates_injected
+          path: |
+            docs/user_guides/templates_injected
+      - name: diff
+        run: git diff
+      - name: Check template generation
+        run: yarn build
