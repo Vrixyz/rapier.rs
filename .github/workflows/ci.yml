@@ -38,9 +38,9 @@ jobs:
       - name: Archive templates
         uses: actions/upload-artifact@v4
         with:
-          name: templates_injected
+          name: bevy_plugin
           path: |
-            docs/user_guides/templates_injected
+            docs/user_guides/bevy_plugin
       - name: diff
         run: git diff
       - name: Check template generation
