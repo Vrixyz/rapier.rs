@@ -20,6 +20,8 @@ jobs:
         run: cd docs-examples && cargo test
   check-injection:
     runs-on: windows-latest
+    env:
+      PUBLISH_MODE: 1
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,4 +34,4 @@ jobs:
       - name: dump infos
         run: yarn -v ; yarn run docusaurus -V ; node -v ; yarn node -v
       - name: Check template generation
-        run: ./generate_user_guides.sh && $PUBLISH_MODE:1 yarn build
+        run: ./generate_user_guides.sh && yarn build
