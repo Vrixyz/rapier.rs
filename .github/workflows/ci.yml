@@ -19,7 +19,7 @@ jobs:
       - name: Code snippets compilation check + tests
         run: cd docs-examples && cargo test
   check-injection:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       PUBLISH_MODE: 1
     steps:
