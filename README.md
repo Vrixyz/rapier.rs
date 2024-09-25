@@ -14,19 +14,19 @@ $ yarn
 $ ./generate_user_guides.sh
 ```
 
-This command reads the templates directory and extracts specific instructions for bevy / rust / rapier integrations. It also injects code contained in rust files.
+Above command reads the templates directory and extracts specific instructions for bevy / rust / rapier integrations. It also injects code contained in rust files.
 
 ```
 $ yarn build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Above command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ```
 $ yarn start
 ```
 
-This command builds and starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+Above command builds and starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Deployment
 
